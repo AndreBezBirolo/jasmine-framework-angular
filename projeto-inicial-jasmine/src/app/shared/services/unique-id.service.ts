@@ -5,12 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 export class UniqueIdService {
 
   private numberOfGeneratedIds = 0;
+  private VALID_ID_REGEX = /^[A-Za-z]+[\w\-\:\.]*$/;
 
   constructor() {
   }
 
   public generateUniqueIdWithPrefix(prefix: string): string {
-    if (!prefix) {
+    if (!prefix || !this.VALID_ID_REGEX.test(prefix)) {
       throw Error('Prefix can not be empty');
     }
     const uniqueId = this.generateUniqueId();
@@ -18,7 +19,7 @@ export class UniqueIdService {
     return `${prefix}-${uniqueId}`;
   }
 
-  public getNumberOfGeneratedUniqueId(): number {
+  public getNumberOfGeneratedUniqueIds(): number {
     return this.numberOfGeneratedIds;
   }
 
