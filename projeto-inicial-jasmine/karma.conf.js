@@ -8,6 +8,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -19,16 +20,21 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/ng-test1'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        {type: 'html'},
+        {type: 'text-summary'}
       ]
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
+    // Evita que o deploy automatico com algum erro aconteça.
+    autoWatch: false,
+    // autoWatch: true,
+    // Navegador sem interface gráfica.
+    browsers: ['ChromeHeadless'],
+    // browsers: ['Chrome'],
+    // browsers: ['Chrome', 'Firefox'],
     singleRun: false,
     restartOnFileChange: true
   });
