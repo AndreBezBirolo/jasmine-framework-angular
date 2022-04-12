@@ -33,10 +33,10 @@ describe(LikeWidgetComponent.name, () => {
 
   it(`#${LikeWidgetComponent.prototype.like.name}
     should trigger (@Output liked) when called`, () => {
-      spyOn(component.liked, 'emit');
-      fixture.detectChanges();
-      component.like();
-      expect(component.liked.emit).toHaveBeenCalled();
+    spyOn(component.liked, 'emit');
+    fixture.detectChanges();
+    component.like();
+    expect(component.liked.emit).toHaveBeenCalled();
   });
 
   it(`(DOM) - Should display number of likes when clicked`, done => {
@@ -50,5 +50,20 @@ describe(LikeWidgetComponent.name, () => {
     });
     const likeWidgetContainer: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
     likeWidgetContainer.click();
+  });
+
+  it(`(DOM) Should display number of likes when ENTER key is pressed`, done => {
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent.trim()).toBe('1');
+      done();
+    });
+
+    const likeWidgetContainer: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    const event = new KeyboardEvent('keyup', { key: 'Enter' });
+    likeWidgetContainer.dispatchEvent(event);
   });
 });
