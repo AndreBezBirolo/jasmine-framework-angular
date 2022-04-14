@@ -8,7 +8,7 @@ import { PhotoFrameModule } from './shared/components/photo-frame/photo-frame.mo
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
