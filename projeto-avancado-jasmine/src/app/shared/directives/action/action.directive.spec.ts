@@ -21,7 +21,25 @@ describe(ActionDirective.name, () => {
     const divEl: HTMLElement = fixture.nativeElement.querySelector('.dummy-component');
     const event = new KeyboardEvent('keyup', { key: 'Enter' });
     divEl.dispatchEvent(event);
-    expect(component.hasEvent()).toBe(true);
+    expect(component.hasEvent()).toBeTrue();
+  });
+
+  it('(DOM) - (@Output appAction) should emit event with payload when clicked', () => {
+    const divEl: HTMLElement = fixture.nativeElement.querySelector('.dummy-component');
+    const event = new Event('click');
+    divEl.dispatchEvent(event);
+    expect(component.hasEvent()).toBeTrue();
+  });
+
+  it('(DOM) (@Output appAction) should emit event with payload when clicked or ENTER key pressed', () => {
+    const divEl: HTMLElement = fixture.nativeElement.querySelector('.dummy-component');
+    const keyBoardEvent = new KeyboardEvent('keyup', { key: 'Enter' });
+    const clickEvent = new Event('click');
+    divEl.dispatchEvent(clickEvent);
+    expect(component.hasEvent()).withContext('Click event').toBeTrue();
+    component.clearEvent();
+    divEl.dispatchEvent(keyBoardEvent);
+    expect(component.hasEvent()).withContext('Keyboard event \'keyup\'').toBeTrue();
   });
 });
 
@@ -38,5 +56,9 @@ class ActionDirectiveTestComponent {
 
   public hasEvent(): boolean {
     return !!this.event;
+  }
+
+  public clearEvent(): void {
+    this.event = null;
   }
 }
