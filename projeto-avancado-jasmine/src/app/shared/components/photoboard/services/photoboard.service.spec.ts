@@ -42,6 +42,8 @@ describe(PhotoboardService.name, () => {
     expect(service).toBeTruthy();
   });
 
+  afterEach(() => httpController.verify());
+
   it(`#${PhotoboardService.prototype.getPhotos.name} should return photos with description in uppercase`, done => {
     service.getPhotos().subscribe((photos) => {
       expect(photos[ 0 ].description).toBe('EXAMPLE 1');
@@ -52,4 +54,5 @@ describe(PhotoboardService.name, () => {
       .expectOne(mockData.api)
       .flush(mockData.data);
   })
+
 });
