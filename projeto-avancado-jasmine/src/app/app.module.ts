@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LikeWidgetModule } from './shared/components/like-widget/like-widget.module';
-import { PhotoFrameModule } from './shared/components/photo-frame/photo-frame.module';
 import { HttpClientModule } from '@angular/common/http';
-import { PhotoboardModule } from './shared/components/photoboard/photoboard.module';
+import { PhotoListModule } from './components/photo-list/photo-list.module';
 
 @NgModule({
   declarations: [
@@ -15,10 +13,8 @@ import { PhotoboardModule } from './shared/components/photoboard/photoboard.modu
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LikeWidgetModule,
-    PhotoFrameModule,
     HttpClientModule,
-    PhotoboardModule
+    PhotoListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
