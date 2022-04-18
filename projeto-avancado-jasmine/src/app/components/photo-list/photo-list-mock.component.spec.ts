@@ -4,9 +4,7 @@ import { PhotoListComponent } from './photo-list.component';
 import { PhotoListModule } from './photo-list.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PhotoboardService } from '../../shared/components/photoboard/services/photoboard.service';
-import { buildPhotoList } from '../../shared/components/photoboard/test/build-photo-list';
-import { Observable, of } from 'rxjs';
-import { Photo } from '../../shared/components/photoboard/interfaces/photo';
+import { PhotoboardMockServiceSpec } from '../../shared/components/photoboard/services/photoboard-mock.service.spec';
 
 describe(PhotoListComponent.name + ' Mock Provider', () => {
   let component: PhotoListComponent;
@@ -18,11 +16,7 @@ describe(PhotoListComponent.name + ' Mock Provider', () => {
       providers: [
         {
           provide: PhotoboardService,
-          useValue: {
-            getPhotos(): Observable<Photo[]> {
-              return of(buildPhotoList())
-            }
-          }
+          useClass: PhotoboardMockServiceSpec
         }
       ]
     })
