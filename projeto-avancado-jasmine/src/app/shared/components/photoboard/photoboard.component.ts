@@ -8,19 +8,13 @@ import { Photo } from './interfaces/photo';
 })
 export class PhotoboardComponent implements OnChanges {
 
-  @Input() public photos: Photo[];
-  public rows: any[][] = [];
-
   constructor() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.photos) {
-      this.rows = this.groupColumns(changes.photos.currentValue);
-    }
-  }
+  @Input() public photos: Photo[];
+  public rows: any[][] = [];
 
-  public groupColumns(photos: Photo[]): any[][] {
+  private static groupColumns(photos: Photo[]): any[][] {
     if (!photos) { return; }
     const newRows = [];
     const step = 4;
@@ -30,6 +24,12 @@ export class PhotoboardComponent implements OnChanges {
     }
 
     return newRows;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.photos) {
+      this.rows = PhotoboardComponent.groupColumns(changes.photos.currentValue);
+    }
   }
 
 }
