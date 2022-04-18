@@ -23,7 +23,7 @@ export class PhotoFrameComponent implements OnInit, OnDestroy {
       .asObservable()
       .pipe(debounceTime(500))
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(() => this.liked.emit());
+      .subscribe(() => this.likes++);
   }
 
   public like(): void {

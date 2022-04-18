@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LikeWidgetModule } from './shared/components/like-widget/like-widget.module';
 import { PhotoFrameModule } from './shared/components/photo-frame/photo-frame.module';
+import { HttpClientModule } from '@angular/common/http';
+import { PhotoboardModule } from './shared/components/photoboard/photoboard.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { PhotoFrameModule } from './shared/components/photo-frame/photo-frame.mo
     BrowserModule,
     AppRoutingModule,
     LikeWidgetModule,
-    PhotoFrameModule
+    PhotoFrameModule,
+    HttpClientModule,
+    PhotoboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

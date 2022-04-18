@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PhotoboardComponent } from './photoboard.component';
 import { PhotoFrameModule } from '../photo-frame/photo-frame.module';
+import { PhotoboardService } from './services/photoboard.service';
 
 
 @NgModule({
@@ -12,6 +13,9 @@ import { PhotoFrameModule } from '../photo-frame/photo-frame.module';
   ],
   exports: [
     PhotoboardComponent
+  ],
+  providers: [
+    PhotoboardService
   ]
 })
 export class PhotoboardModule {

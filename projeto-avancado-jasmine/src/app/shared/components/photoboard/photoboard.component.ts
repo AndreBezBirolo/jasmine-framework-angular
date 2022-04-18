@@ -21,6 +21,7 @@ export class PhotoboardComponent implements OnChanges {
   }
 
   public groupColumns(photos: Photo[]): any[][] {
+    if (!photos) { return; }
     const newRows = [];
     const step = 4;
 
